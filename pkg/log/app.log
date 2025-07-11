@@ -1,0 +1,8 @@
+{"level":"INFO","timestamp":"2025-07-12T00:00:18.521+0300","caller":"go-micro-service/main.go:24","message":"hello"}
+{"level":"INFO","timestamp":"2025-07-12T00:00:18.543+0300","caller":"go-micro-service/main.go:43","message":"server started on port","port":"3000"}
+{"level":"INFO","timestamp":"2025-07-12T00:00:31.070+0300","caller":"go-micro-service/main.go:51","message":"Shutting down server..."}
+{"level":"INFO","timestamp":"2025-07-12T00:00:31.071+0300","caller":"go-micro-service/main.go:58","message":"server sracefully stopped"}
+{"level":"INFO","timestamp":"2025-07-12T00:02:17.338+0300","caller":"go-micro-service/main.go:24","message":"hello"}
+{"level":"INFO","timestamp":"2025-07-12T00:02:17.361+0300","caller":"go-micro-service/main.go:43","message":"server started on port","port":"3000"}
+{"level":"INFO","timestamp":"2025-07-12T00:02:24.568+0300","caller":"go-micro-service/main.go:56","message":"Shutting down server..."}
+{"level":"INFO","timestamp":"2025-07-12T00:02:24.569+0300","caller":"go-micro-service/main.go:63","message":"server sracefully stopped"}
