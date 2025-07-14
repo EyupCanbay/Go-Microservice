@@ -25,6 +25,11 @@ func main() {
 
 	app := fiber.New()
 
+	app.Get("/healthcheck", func(c fiber.Ctx) error {
+		// TODO: check some dependencies
+		return c.SendString("OK")
+	})
+
 	app.Get("/metrics", adaptor.HTTPHandler(promhttp.Handler()))
 
 	app.Get("/", func(c fiber.Ctx) error {

@@ -6,3 +6,149 @@
 {"level":"INFO","timestamp":"2025-07-12T00:02:17.361+0300","caller":"go-micro-service/main.go:43","message":"server started on port","port":"3000"}
 {"level":"INFO","timestamp":"2025-07-12T00:02:24.568+0300","caller":"go-micro-service/main.go:56","message":"Shutting down server..."}
 {"level":"INFO","timestamp":"2025-07-12T00:02:24.569+0300","caller":"go-micro-service/main.go:63","message":"server sracefully stopped"}
+{"level":"INFO","timestamp":"2025-07-12T11:24:39.770+0300","caller":"go-micro-service/main.go:24","message":"hello"}
+{"level":"INFO","timestamp":"2025-07-12T11:24:39.792+0300","caller":"go-micro-service/main.go:48","message":"server started on port","port":"8080"}
+{"level":"INFO","timestamp":"2025-07-12T11:28:02.260+0300","caller":"go-micro-service/main.go:60","message":"Shutting down server..."}
+{"level":"INFO","timestamp":"2025-07-12T11:28:02.261+0300","caller":"go-micro-service/main.go:67","message":"server sracefully stopped"}
+{"level":"INFO","timestamp":"2025-07-12T11:28:04.142+0300","caller":"go-micro-service/main.go:24","message":"hello"}
+{"level":"INFO","timestamp":"2025-07-12T11:28:04.162+0300","caller":"go-micro-service/main.go:48","message":"server started on port","port":"8080"}
+{"level":"INFO","timestamp":"2025-07-12T11:46:10.942+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T11:46:11.918+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T11:46:12.207+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T11:46:12.449+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T11:46:12.626+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T11:46:12.806+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T11:46:12.982+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T11:46:13.173+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T11:46:13.352+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T11:46:13.532+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T11:46:13.736+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T11:46:13.900+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T11:46:14.086+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:13:44.948+0300","caller":"go-micro-service/main.go:60","message":"Shutting down server..."}
+{"level":"INFO","timestamp":"2025-07-12T12:13:45.061+0300","caller":"go-micro-service/main.go:67","message":"server sracefully stopped"}
+{"level":"INFO","timestamp":"2025-07-12T12:13:47.046+0300","caller":"go-micro-service/main.go:24","message":"hello"}
+{"level":"INFO","timestamp":"2025-07-12T12:13:47.067+0300","caller":"go-micro-service/main.go:48","message":"server started on port","port":"8080"}
+{"level":"INFO","timestamp":"2025-07-12T12:14:28.376+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:14:28.547+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:14:28.718+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:14:28.915+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:14:29.104+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:14:29.334+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:14:31.100+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:14:31.358+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:14:32.373+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:14:32.594+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:14:32.772+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:14:32.942+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:14:33.115+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:14:33.286+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:14:39.150+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:14:39.316+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:14:39.472+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:18:40.272+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:18:40.431+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:18:40.603+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:18:40.766+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:18:40.921+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:18:41.086+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:18:41.248+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:18:41.412+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:18:41.577+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:18:41.742+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:18:41.915+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:18:42.097+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:25:18.621+0300","caller":"go-micro-service/main.go:60","message":"Shutting down server..."}
+{"level":"INFO","timestamp":"2025-07-12T12:25:18.625+0300","caller":"go-micro-service/main.go:67","message":"server sracefully stopped"}
+{"level":"INFO","timestamp":"2025-07-12T12:25:20.304+0300","caller":"go-micro-service/main.go:24","message":"hello"}
+{"level":"INFO","timestamp":"2025-07-12T12:25:20.324+0300","caller":"go-micro-service/main.go:48","message":"server started on port","port":"8080"}
+{"level":"INFO","timestamp":"2025-07-12T12:25:33.194+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:25:33.357+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:25:33.515+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:25:33.677+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:25:33.850+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:25:34.016+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:25:34.190+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:25:34.372+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:25:34.536+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:25:34.710+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:25:34.988+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:26:25.276+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:26:25.439+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:26:25.602+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:26:25.766+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:26:25.944+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:26:26.665+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:26:26.844+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:26:27.021+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:26:27.186+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:26:27.352+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:26:27.531+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:26:27.668+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:26:27.827+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T12:26:27.963+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:32:39.229+0300","caller":"go-micro-service/main.go:60","message":"Shutting down server..."}
+{"level":"INFO","timestamp":"2025-07-12T18:32:39.346+0300","caller":"go-micro-service/main.go:67","message":"server sracefully stopped"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:10.357+0300","caller":"go-micro-service/main.go:24","message":"hello"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:10.376+0300","caller":"go-micro-service/main.go:48","message":"server started on port","port":"8080"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:40.444+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:40.603+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:40.775+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:40.938+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:41.120+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:41.291+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:41.465+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:41.639+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:41.812+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:41.991+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:42.165+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:42.337+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:42.511+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:42.693+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:42.877+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:43.051+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:43.235+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:43.409+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:43.587+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:43.767+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:43.957+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:44.125+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:44.296+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:44.462+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:44.655+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:44.821+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:45.005+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:45.181+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:45.357+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:45.556+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:45.728+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:45.928+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:46.123+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:46.861+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:47.101+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:47.259+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:47.428+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T18:33:47.593+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-12T21:13:20.025+0300","caller":"go-micro-service/main.go:60","message":"Shutting down server..."}
+{"level":"INFO","timestamp":"2025-07-12T21:13:20.126+0300","caller":"go-micro-service/main.go:67","message":"server sracefully stopped"}
+{"level":"INFO","timestamp":"2025-07-14T14:00:32.040+0300","caller":"go-micro-service/main.go:24","message":"hello"}
+{"level":"INFO","timestamp":"2025-07-14T14:00:32.059+0300","caller":"go-micro-service/main.go:48","message":"server started on port","port":"8080"}
+{"level":"INFO","timestamp":"2025-07-14T14:04:30.891+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-14T14:04:31.067+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-14T14:04:31.260+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-14T14:04:31.467+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-14T14:04:31.648+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-14T14:04:31.825+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-14T14:04:31.989+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-14T14:04:32.146+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-14T14:04:32.300+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-14T14:04:32.463+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-14T14:04:32.619+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-14T14:25:16.665+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-14T14:25:16.820+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-14T14:25:16.951+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-14T14:25:17.089+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-14T14:25:17.244+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-14T14:25:17.395+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-14T14:25:17.541+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
+{"level":"INFO","timestamp":"2025-07-14T14:25:17.671+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
