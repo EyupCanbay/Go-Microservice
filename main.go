@@ -1,9 +1,12 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"microservice/pkg/config"
 	_ "microservice/pkg/log"
+	"net"
+	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
@@ -18,12 +21,17 @@ import (
 func main() {
 
 	appConfig := config.Read()
-
 	defer zap.L().Sync()
 
-	zap.L().Info("hello")
+	zap.L().Info("app staring ...")
 
-	app := fiber.New()
+	// server timeout config
+	app := fiber.New(fiber.Config{
+		IdleTimeout:  3 * time.Second,
+		ReadTimeout:  3 * time.Second,
+		WriteTimeout: 3 * time.Second,
+		Concurrency:  256 * 1024,
+	})
 
 	app.Get("/healthcheck", func(c fiber.Ctx) error {
 		// TODO: check some dependencies
@@ -65,4 +73,33 @@ func gracefullShutDown(app *fiber.App) {
 	}
 
 	zap.L().Info("server sracefully stopped")
+}
+
+func httpC() {
+	httpClient := &http.Client{
+		Transport: &http.Transport{
+			Dial: (&net.Dialer{
+				Timeout:   10 * time.Second,
+				KeepAlive: 10 * time.Second,
+			}).Dial,
+			TLSHandshakeTimeout:   10 * time.Second,
+			ResponseHeaderTimeout: 10 * time.Second,
+			ExpectContinueTimeout: 1 * time.Second,
+		},
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, "https://www.google.com", nil)
+	if err != nil {
+		zap.L().Error("failed to get google", zap.Error(err))
+	}
+
+	resp, err := httpClient.Do(req)
+	if err != nil {
+		zap.L().Error("failed to get google", zap.Error(err))
+	}
+	zap.L().Info("google response", zap.Int("status", resp.StatusCode))
+
 }
