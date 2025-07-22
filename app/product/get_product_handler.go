@@ -11,6 +11,9 @@ type GetProductResponse struct {
 type GetProductHandler struct {
 }
 
+func NewProductHandler() *GetProductHandler {
+	return &GetProductHandler{}
+}
 func (h *GetProductHandler) Handle(ctx context.Context, req *GetProductRequest) (*GetProductResponse, error) {
 	return &GetProductResponse{}, nil
 }

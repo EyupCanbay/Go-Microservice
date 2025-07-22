@@ -154,3 +154,11 @@
 {"level":"INFO","timestamp":"2025-07-14T14:25:17.671+0300","caller":"go-micro-service/main.go:36","message":"Hello word"}
 {"level":"INFO","timestamp":"2025-07-14T15:24:57.435+0300","caller":"go-micro-service/main.go:60","message":"Shutting down server..."}
 {"level":"INFO","timestamp":"2025-07-14T15:24:57.539+0300","caller":"go-micro-service/main.go:67","message":"server sracefully stopped"}
+{"level":"INFO","timestamp":"2025-07-22T14:58:37.228+0300","caller":"go-micro-service/main.go:54","message":"app starting ..."}
+{"level":"INFO","timestamp":"2025-07-22T14:58:37.251+0300","caller":"go-micro-service/main.go:84","message":"server started on port","port":"8080"}
+{"level":"INFO","timestamp":"2025-07-22T15:22:52.173+0300","caller":"go-micro-service/main.go:96","message":"Shutting down server..."}
+{"level":"INFO","timestamp":"2025-07-22T15:22:52.173+0300","caller":"go-micro-service/main.go:103","message":"server gracefully stopped"}
+{"level":"INFO","timestamp":"2025-07-22T15:22:54.770+0300","caller":"go-micro-service/main.go:57","message":"app starting ..."}
+{"level":"INFO","timestamp":"2025-07-22T15:22:54.791+0300","caller":"go-micro-service/main.go:83","message":"server started on port","port":"8080"}
+{"level":"INFO","timestamp":"2025-07-22T15:42:20.951+0300","caller":"go-micro-service/main.go:95","message":"Shutting down server..."}
+{"level":"INFO","timestamp":"2025-07-22T15:42:20.952+0300","caller":"go-micro-service/main.go:102","message":"server gracefully stopped"}

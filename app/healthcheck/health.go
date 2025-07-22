@@ -14,6 +14,10 @@ type HealthcheckResponse struct {
 type HealthcheckHandler struct {
 }
 
+func NewHealthCheckHandler() *HealthcheckHandler {
+	return &HealthcheckHandler{}
+}
+
 func (h *HealthcheckHandler) Handle(ctx context.Context, req *HealthcheckRequest) (*HealthcheckResponse, error) {
 	return &HealthcheckResponse{Status: "OK"}, nil
 }

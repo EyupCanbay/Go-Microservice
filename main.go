@@ -2,7 +2,10 @@ package main
 
 import (
 	"context"
+	"errors"
 	"fmt"
+	"microservice/app/healthcheck"
+	"microservice/app/product"
 	"microservice/pkg/config"
 	_ "microservice/pkg/log"
 	"net"
@@ -18,14 +21,57 @@ import (
 	"go.uber.org/zap"
 )
 
+type Request any
+type Response any
+
+type HandlerInterface[R any, Res any] interface {
+	Handle(ctx context.Context, req *R) (*Res, error)
+}
+
+// context propagation yapıldı
+//timeout yapılırken bu contexi geçmemiz gerekirdi 
+func Handle[R any, Res any](handler HandlerInterface[R, Res]) fiber.Handler {
+	return func(c fiber.Ctx) error {
+		var req R
+		
+		if err := c.Bind().Body(&req); err != nil && errors.Is(err, fiber.ErrUnprocessableEntity) {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err.Error()})
+		}
+
+		if err := c.Bind().Query(&req); err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid query parameters: " + err.Error()})
+		}
+
+		if err:= c.Bind().URI(&req); err != nil{
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid Url parameters: " + err.Error()})
+		}
+
+		if err:= c.Bind().Header(&req); err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid header parameters: " + err.Error()})
+		}
+
+		res, err := handler.Handle(c.Context(), &req)
+		if err != nil {
+			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+		}
+
+		return c.JSON(res)
+	}
+}
+
 func main() {
 
 	appConfig := config.Read()
 	defer zap.L().Sync()
 
-	zap.L().Info("app staring ...")
+	zap.L().Info("app starting ...")
+
+	producthandler := product.NewProductHandler()
+	healthCheckHandler := healthcheck.NewHealthCheckHandler()
 
 	// server timeout config
+	//uygulamanın sağlıklı çalışabilmesi için hem clienta hem servere 
+	//time out eklendi
 	app := fiber.New(fiber.Config{
 		IdleTimeout:  3 * time.Second,
 		ReadTimeout:  3 * time.Second,
@@ -33,17 +79,11 @@ func main() {
 		Concurrency:  256 * 1024,
 	})
 
-	app.Get("/healthcheck", func(c fiber.Ctx) error {
-		// TODO: check some dependencies
-		return c.SendString("OK")
-	})
-
+	// type save structure is provided
+	// type save bir yapı oluşturuldu
 	app.Get("/metrics", adaptor.HTTPHandler(promhttp.Handler()))
-
-	app.Get("/", func(c fiber.Ctx) error {
-		zap.L().Info("Hello word")
-		return c.SendString("hello")
-	})
+	app.Get("/healthcheck", Handle[healthcheck.HealthcheckRequest, healthcheck.HealthcheckResponse](healthCheckHandler))
+	app.Get("/products", Handle[product.GetProductRequest, product.GetProductResponse](producthandler))
 
 	// start server in a goroutine
 	go func() {
@@ -55,10 +95,11 @@ func main() {
 
 	zap.L().Info("server started on port", zap.String("port", appConfig.Port))
 
-	gracefullShutDown(app)
+	gracefulShutDown(app)
 }
 
-func gracefullShutDown(app *fiber.App) {
+// sağlıklı inebilmesi için gracefull shut down eklendi
+func gracefulShutDown(app *fiber.App) {
 	// create channel for shutdown signals
 	signChan := make(chan os.Signal, 1)
 	signal.Notify(signChan, os.Interrupt, syscall.SIGTERM)
@@ -67,12 +108,12 @@ func gracefullShutDown(app *fiber.App) {
 	<-signChan
 	zap.L().Info("Shutting down server...")
 
-	// Shutdown with 5 second
+	// Shutdown with 5 second timeout
 	if err := app.ShutdownWithTimeout(5 * time.Second); err != nil {
 		zap.L().Error("error during server shutdown", zap.Error(err))
 	}
 
-	zap.L().Info("server sracefully stopped")
+	zap.L().Info("server gracefully stopped")
 }
 
 func httpC() {
@@ -94,12 +135,15 @@ func httpC() {
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, "https://www.google.com", nil)
 	if err != nil {
 		zap.L().Error("failed to get google", zap.Error(err))
+		return
 	}
 
 	resp, err := httpClient.Do(req)
 	if err != nil {
 		zap.L().Error("failed to get google", zap.Error(err))
+		return
 	}
-	zap.L().Info("google response", zap.Int("status", resp.StatusCode))
+	defer resp.Body.Close()
 
+	zap.L().Info("google response", zap.Int("status", resp.StatusCode))
 }
