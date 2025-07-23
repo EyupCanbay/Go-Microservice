@@ -29,11 +29,11 @@ type HandlerInterface[R any, Res any] interface {
 }
 
 // context propagation yapıldı
-//timeout yapılırken bu contexi geçmemiz gerekirdi 
+// timeout yapılırken bu contexi geçmemiz gerekirdi
 func Handle[R any, Res any](handler HandlerInterface[R, Res]) fiber.Handler {
 	return func(c fiber.Ctx) error {
 		var req R
-		
+
 		if err := c.Bind().Body(&req); err != nil && errors.Is(err, fiber.ErrUnprocessableEntity) {
 			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err.Error()})
 		}
@@ -42,15 +42,18 @@ func Handle[R any, Res any](handler HandlerInterface[R, Res]) fiber.Handler {
 			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid query parameters: " + err.Error()})
 		}
 
-		if err:= c.Bind().URI(&req); err != nil{
+		if err := c.Bind().URI(&req); err != nil {
 			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid Url parameters: " + err.Error()})
 		}
 
-		if err:= c.Bind().Header(&req); err != nil {
+		if err := c.Bind().Header(&req); err != nil {
 			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid header parameters: " + err.Error()})
 		}
 
-		res, err := handler.Handle(c.Context(), &req)
+		ctx, cancel := context.WithTimeout(c.Context(), time.Second)
+		defer cancel()
+		
+		res, err := handler.Handle(ctx, &req)
 		if err != nil {
 			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
 		}
@@ -70,7 +73,7 @@ func main() {
 	healthCheckHandler := healthcheck.NewHealthCheckHandler()
 
 	// server timeout config
-	//uygulamanın sağlıklı çalışabilmesi için hem clienta hem servere 
+	//uygulamanın sağlıklı çalışabilmesi için hem clienta hem servere
 	//time out eklendi
 	app := fiber.New(fiber.Config{
 		IdleTimeout:  3 * time.Second,
