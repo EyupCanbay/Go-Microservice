@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"microservice/app/healthcheck"
 	"microservice/app/product"
+	"microservice/infra/couchbase"
 	"microservice/pkg/config"
 	_ "microservice/pkg/log"
 	"net"
@@ -52,9 +53,10 @@ func Handle[R any, Res any](handler HandlerInterface[R, Res]) fiber.Handler {
 
 		ctx, cancel := context.WithTimeout(c.Context(), time.Second)
 		defer cancel()
-		
+
 		res, err := handler.Handle(ctx, &req)
 		if err != nil {
+			zap.L().Error("failed to request", zap.Error(err))
 			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
 		}
 
@@ -69,7 +71,10 @@ func main() {
 
 	zap.L().Info("app starting ...")
 
-	producthandler := product.NewProductHandler()
+	couchbaseRpository := couchbase.NewCouchbaseRepository()
+
+	getProducthandler := product.NewGetProductHandler(couchbaseRpository)
+	createProductHandler := product.NewCreateProductHandler(couchbaseRpository)
 	healthCheckHandler := healthcheck.NewHealthCheckHandler()
 
 	// server timeout config
@@ -86,7 +91,8 @@ func main() {
 	// type save bir yapı oluşturuldu
 	app.Get("/metrics", adaptor.HTTPHandler(promhttp.Handler()))
 	app.Get("/healthcheck", Handle[healthcheck.HealthcheckRequest, healthcheck.HealthcheckResponse](healthCheckHandler))
-	app.Get("/products", Handle[product.GetProductRequest, product.GetProductResponse](producthandler))
+	app.Get("/products/:id", Handle[product.GetProductRequest, product.GetProductResponse](getProducthandler))
+	app.Post("/products", Handle[product.CreateProductRequest, product.CreateProductResponse](createProductHandler))
 
 	// start server in a goroutine
 	go func() {

@@ -16,7 +16,7 @@ type CouchbaseRepository struct {
 
 func NewCouchbaseRepository() *CouchbaseRepository {
 
-	cluster, err := gocb.Connect("couchbasehttp://localhost", gocb.ClusterOptions{
+	cluster, err := gocb.Connect("couchbase://127.0.0.1", gocb.ClusterOptions{
 		TimeoutsConfig: gocb.TimeoutsConfig{
 			ConnectTimeout: 3 * time.Second,
 			KVTimeout:      3 * time.Second,
@@ -24,7 +24,7 @@ func NewCouchbaseRepository() *CouchbaseRepository {
 		},
 		Authenticator: gocb.PasswordAuthenticator{
 			Username: "Administrator",
-			Password: "password",
+			Password: "123456789",
 		},
 		Transcoder: gocb.NewJSONTranscoder(),
 	})
@@ -41,7 +41,7 @@ func NewCouchbaseRepository() *CouchbaseRepository {
 }
 
 func (r *CouchbaseRepository) GetProduct(ctx context.Context, id string) (*domain.Product, error) {
-	data, err := r.bucket.Collection("products").Get(id, &gocb.GetOptions{
+	data, err := r.bucket.DefaultCollection().Get(id, &gocb.GetOptions{
 		Timeout: 3 * time.Second,
 		Context: ctx,
 	})
@@ -58,8 +58,8 @@ func (r *CouchbaseRepository) GetProduct(ctx context.Context, id string) (*domai
 }
 
 func (r *CouchbaseRepository) CreateProduct(ctx context.Context, product *domain.Product) error {
-	_, err := r.bucket.Collection("products").Insert(product.ID, product, &gocb.InsertOptions{
-		Timeout: 3*time.Second,
+	_, err := r.bucket.DefaultCollection().Insert(product.ID, product, &gocb.InsertOptions{
+		Timeout: 3 * time.Second,
 		Context: ctx,
 	})
 	return err
