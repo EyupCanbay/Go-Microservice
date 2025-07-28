@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"log"
 	"microservice/app/healthcheck"
 	"microservice/app/product"
 	"microservice/infra/couchbase"
@@ -16,9 +17,20 @@ import (
 	"syscall"
 	"time"
 
+	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
+
+	"github.com/gofiber/contrib/otelfiber"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/adaptor"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"go.opentelemetry.io/otel"
+	"go.opentelemetry.io/otel/exporters/otlp/otlptrace"
+	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp"
+	"go.opentelemetry.io/otel/propagation"
+	"go.opentelemetry.io/otel/sdk/resource"
+	sdktrace "go.opentelemetry.io/otel/sdk/trace"
+
+	semconv "go.opentelemetry.io/otel/semconv/v1.4.0"
 	"go.uber.org/zap"
 )
 
@@ -74,9 +86,11 @@ func main() {
 
 	zap.L().Info("app starting ...")
 
-	couchbaseRpository := couchbase.NewCouchbaseRepository()
+	tp := initTracer()
+	httpClient := httpC()
+	couchbaseRpository := couchbase.NewCouchbaseRepository(tp)
 
-	getProducthandler := product.NewGetProductHandler(couchbaseRpository)
+	getProducthandler := product.NewGetProductHandler(couchbaseRpository, httpClient)
 	createProductHandler := product.NewCreateProductHandler(couchbaseRpository)
 	healthCheckHandler := healthcheck.NewHealthCheckHandler()
 
@@ -89,6 +103,8 @@ func main() {
 		WriteTimeout: 3 * time.Second,
 		Concurrency:  256 * 1024,
 	})
+
+	app.Use(otelfiber.Middleware())
 
 	// type save structure is provided
 	// type save bir yapı oluşturuldu
@@ -128,34 +144,51 @@ func gracefulShutDown(app *fiber.App) {
 	zap.L().Info("server gracefully stopped")
 }
 
-func httpC() {
+func httpC() *http.Client {
+	transport := &http.Transport{
+		Dial: (&net.Dialer{
+			Timeout:   10 * time.Second,
+			KeepAlive: 10 * time.Second,
+		}).Dial,
+		TLSHandshakeTimeout:   10 * time.Second,
+		ResponseHeaderTimeout: 10 * time.Second,
+		ExpectContinueTimeout: 1 * time.Second,
+	}
+
 	httpClient := &http.Client{
-		Transport: &http.Transport{
-			Dial: (&net.Dialer{
-				Timeout:   10 * time.Second,
-				KeepAlive: 10 * time.Second,
-			}).Dial,
-			TLSHandshakeTimeout:   10 * time.Second,
-			ResponseHeaderTimeout: 10 * time.Second,
-			ExpectContinueTimeout: 1 * time.Second,
-		},
+		Transport: otelhttp.NewTransport(transport),
 	}
 
-	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
-	defer cancel()
+	return httpClient
+}
 
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, "https://www.google.com", nil)
+func initTracer() *sdktrace.TracerProvider {
+
+	headers := map[string]string{
+		"content-type": "application/json",
+	}
+
+	exporter, err := otlptrace.New(
+		context.Background(),
+		otlptracehttp.NewClient(
+			otlptracehttp.WithEndpoint("localhost:4318"),
+			otlptracehttp.WithHeaders(headers),
+			otlptracehttp.WithInsecure(),
+		),
+	)
 	if err != nil {
-		zap.L().Error("failed to get google", zap.Error(err))
-		return
+		log.Fatal(err)
 	}
-
-	resp, err := httpClient.Do(req)
-	if err != nil {
-		zap.L().Error("failed to get google", zap.Error(err))
-		return
-	}
-	defer resp.Body.Close()
-
-	zap.L().Info("google response", zap.Int("status", resp.StatusCode))
+	tp := sdktrace.NewTracerProvider(
+		sdktrace.WithSampler(sdktrace.AlwaysSample()),
+		sdktrace.WithBatcher(exporter),
+		sdktrace.WithResource(
+			resource.NewWithAttributes(
+				semconv.SchemaURL,
+				semconv.ServiceNameKey.String("microservice-go"),
+			)),
+	)
+	otel.SetTracerProvider(tp)
+	otel.SetTextMapPropagator(propagation.NewCompositeTextMapPropagator(propagation.TraceContext{}, propagation.Baggage{}))
+	return tp
 }
