@@ -16,8 +16,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/gofiber/fiber/v3"
-	"github.com/gofiber/fiber/v3/middleware/adaptor"
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/adaptor"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"go.uber.org/zap"
 )
@@ -31,36 +31,39 @@ type HandlerInterface[R any, Res any] interface {
 
 // context propagation yapıldı
 // timeout yapılırken bu contexi geçmemiz gerekirdi
+
 func Handle[R any, Res any](handler HandlerInterface[R, Res]) fiber.Handler {
-	return func(c fiber.Ctx) error {
+	return func(c *fiber.Ctx) error {
 		var req R
 
-		if err := c.Bind().Body(&req); err != nil && errors.Is(err, fiber.ErrUnprocessableEntity) {
-			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err.Error()})
+		if err := c.BodyParser(&req); err != nil {
+			if !errors.Is(err, fiber.ErrUnprocessableEntity) {
+			}
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request body: " + err.Error()})
 		}
 
-		if err := c.Bind().Query(&req); err != nil {
+		if err := c.QueryParser(&req); err != nil {
 			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid query parameters: " + err.Error()})
 		}
 
-		if err := c.Bind().URI(&req); err != nil {
-			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid Url parameters: " + err.Error()})
+		if err := c.ParamsParser(&req); err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid URL parameters: " + err.Error()})
 		}
 
-		if err := c.Bind().Header(&req); err != nil {
+		if err := c.ReqHeaderParser(&req); err != nil {
 			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid header parameters: " + err.Error()})
 		}
 
-		ctx, cancel := context.WithTimeout(c.Context(), time.Second)
+		ctx, cancel := context.WithTimeout(c.UserContext(), 5*time.Second)
 		defer cancel()
 
 		res, err := handler.Handle(ctx, &req)
 		if err != nil {
-			zap.L().Error("failed to request", zap.Error(err))
-			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+			zap.L().Error("handler execution failed", zap.Error(err))
+			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "an internal error occurred"})
 		}
 
-		return c.JSON(res)
+		return c.Status(fiber.StatusOK).JSON(res)
 	}
 }
 
