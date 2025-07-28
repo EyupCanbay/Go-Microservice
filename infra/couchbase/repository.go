@@ -2,6 +2,7 @@ package couchbase
 
 import (
 	"context"
+	"errors"
 	"microservice/domain"
 	"time"
 
@@ -46,6 +47,9 @@ func (r *CouchbaseRepository) GetProduct(ctx context.Context, id string) (*domai
 		Context: ctx,
 	})
 	if err != nil {
+		if errors.Is(err, gocb.ErrDocumentNotFound) {
+			return nil, errors.New("product not found")
+		}
 		return nil, err
 	}
 

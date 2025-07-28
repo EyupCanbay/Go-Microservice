@@ -3,11 +3,11 @@ package product
 import (
 	"context"
 	"microservice/domain"
+
+	"github.com/google/uuid"
 )
 
-
 type CreateProductRequest struct {
-	ID   string `json:"id"`
 	Name string `json:"name"`
 }
 
@@ -15,7 +15,7 @@ type CreateProductResponse struct {
 	ID string `json:"id"`
 }
 
-//** oluşuturulan inteface burdaji repository e verilir
+// ** oluşuturulan inteface burdaji repository e verilir
 type CreateProductHandler struct {
 	repository Repository
 }
@@ -27,8 +27,10 @@ func NewCreateProductHandler(repository Repository) *CreateProductHandler {
 }
 
 func (h *CreateProductHandler) Handle(ctx context.Context, req *CreateProductRequest) (*CreateProductResponse, error) {
+	productID := uuid.New().String()
+
 	product := &domain.Product{
-		ID:   req.ID,
+		ID:   productID,
 		Name: req.Name,
 	}
 
